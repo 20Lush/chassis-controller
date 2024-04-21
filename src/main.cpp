@@ -1,5 +1,4 @@
 #include <Adafruit_NeoPixel.h>
-#include <Servo.h>
 #include <sstream>
 #include <string>
 
@@ -12,7 +11,8 @@ std::array<int, R8TS::num_channels> inputs;
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(115200);
+
+  r8ts.Init();
 
 }
 
@@ -21,4 +21,16 @@ void loop() {
 
   inputs = r8ts.getPercents();
 
+}
+
+void setup1() {
+  Serial.begin(115200);
+}
+
+void loop1() {
+
+  std::stringstream ss;
+  ss << " input form core 0: " << inputs[0];
+  Serial.println(ss.str().c_str());
+  delay(250);
 }
